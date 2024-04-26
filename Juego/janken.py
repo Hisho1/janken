@@ -1,5 +1,4 @@
 import random
-import time
 
 victoria = 0
 derrota = 0
@@ -26,7 +25,7 @@ while intentos < 3:
     if victoria == 2 or derrota == 2:
         break
     numero = numeroaleatorio()
-    ###print ("el numero es: ", numero)
+    print ("el numero es: ", numero)
     print (menu())
     ingreso = input("ingrese su eleccion: ")
     if ingreso.isdecimal():
