@@ -2,7 +2,7 @@ import random
 
 victoria = 0
 derrota = 0
-intentos = 3
+intentos = 0
 
 def numeroaleatorio():
     return random.randint(1, 3)
@@ -13,6 +13,17 @@ def menu ():
     2. Papel
     3. Tijera
     """
+
+def ganaste():
+    global victoria, intentos
+    victoria += 1
+    intentos += 1
+
+def perdiste():
+    global derrota, intentos
+    derrota += 1
+    intentos += 1
+
 def quiengano():
    if victoria == derrota:
        return "empate"
@@ -21,43 +32,39 @@ def quiengano():
    else:
        return "perdiste"
     
-while intentos >= 0:
+
+
+while intentos < 3:
     if victoria == 2 or derrota == 2:
         break
-    numero = numeroaleatorio()
-    print ("el numero es: ", numero)
+    computadora = numeroaleatorio()
+    print ("el numero es: ", computadora)
     print (menu())
-    ingreso = input("ingrese su eleccion: ")
-    if ingreso.isdecimal():
-        ingreso = int(ingreso)
-        if ingreso >=1 and ingreso <=3:
-            if numero == ingreso:
+    jugador = input("ingrese su eleccion: ")
+    if jugador.isdecimal():
+        jugador = int(jugador)
+        if jugador >=1 and jugador <=3:
+            if computadora == jugador:
                 print ("empate")
                 intentos += 1
-            elif numero == 1 and ingreso == 2:
-                print ("papel le gana a piedra")
-                victoria += 1
-                intentos += 1  
-            elif numero == 1 and ingreso == 3:
-                print("tijera pierde contra piedra")
-                derrota +=1
-                intentos += 1
-            elif numero == 2 and ingreso == 1:
-                print ("papel le gana a piedra")
-                derrota += 1 
-                intentos += 1 
-            elif numero == 2 and ingreso == 3:
-                print("tijera le gana al papel")
-                victoria +=1
-                intentos += 1
-            elif numero == 3 and ingreso == 1:
-                print ("piedra gana contra tijera")
-                victoria += 1
-                intentos += 1  
-            elif numero == 3 and ingreso == 2:
+            elif jugador == 1 and computadora == 2:
+                print ("Piedra pierde contra papel")
+                perdiste()  
+            elif jugador == 1 and computadora == 3:
+                print("Piedra gana a tijera")
+                ganaste()
+            elif jugador == 2 and computadora == 1:
+                print ("papel gana a piedra")
+                ganaste()
+            elif jugador == 2 and computadora == 3:
                 print("papel pierde contra tijera")
-                derrota +=1
-                intentos += 1
+                perdiste()
+            elif jugador == 3 and computadora == 1:
+                print ("Tijera pierde contra piedra")
+                perdiste()
+            elif jugador == 3 and computadora == 2:
+                print("Tijera gana contra papel")
+                ganaste()
         else:
             print ("ingrese un numero valido")
     else:
