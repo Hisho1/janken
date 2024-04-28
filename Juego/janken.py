@@ -3,6 +3,9 @@ import random
 victoria = 0
 derrota = 0
 intentos = 0
+puntos = 0
+jugador =""
+jugadores ={}
 
 def numeroaleatorio():
     return random.randint(1, 3)
@@ -15,13 +18,19 @@ def menu ():
     """
 
 def ganaste():
-    global victoria, intentos
+    global victoria, intentos, puntos
     victoria += 1
     intentos += 1
+    puntos += 1
 
 def perdiste():
-    global derrota, intentos
+    global derrota, intentos, puntos
     derrota += 1
+    intentos += 1
+    puntos -= 1
+
+def empate():
+    global intentos
     intentos += 1
 
 def quiengano():
@@ -32,13 +41,8 @@ def quiengano():
    else:
        return "perdiste"
     
-
-
-while intentos < 3:
-    if victoria == 2 or derrota == 2:
-        break
+def juego ():
     computadora = numeroaleatorio()
-    print ("el numero es: ", computadora)
     print (menu())
     jugador = input("ingrese su eleccion: ")
     if jugador.isdecimal():
@@ -46,7 +50,7 @@ while intentos < 3:
         if jugador >=1 and jugador <=3:
             if computadora == jugador:
                 print ("empate")
-                intentos += 1
+                empate()
             elif jugador == 1 and computadora == 2:
                 print ("Piedra pierde contra papel")
                 perdiste()  
@@ -70,4 +74,19 @@ while intentos < 3:
     else:
         print ("ingrese un numero valido")
 
-print (f"el juego ha terminado, {quiengano()}")
+jugador = input("ingrese su nombre: ")
+while True:
+    juego()
+    if victoria == 2 or derrota == 2 or intentos == 3:
+        print (f"El juego ha terminado, {quiengano()}")
+        jugar_otra_vez=input("Jugar de nuevo s/n: ")
+        if jugar_otra_vez.lower() == "s":
+            victoria = 0
+            derrota = 0
+            intentos = 0
+        else:
+            print (f"{jugador}, tu puntuacion fue: {puntos}")
+            print ("Se termino el juego")
+            break
+
+    
