@@ -2,7 +2,7 @@ import random
 
 victoria = 0
 derrota = 0
-intentos = 0
+intentos = 3
 
 def numeroaleatorio():
     return random.randint(1, 3)
@@ -21,7 +21,7 @@ def quiengano():
    else:
        return "perdiste"
     
-while intentos < 3:
+while intentos >= 0:
     if victoria == 2 or derrota == 2:
         break
     numero = numeroaleatorio()
